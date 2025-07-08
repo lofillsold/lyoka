@@ -26,14 +26,12 @@
             padding: 15px;
             color: white;
             position: relative;
-            transition: all 0.5s ease;
         }
         
         body.dark-theme {
-            background: linear-gradient(135deg, #0c1445, #2a0a18, #0c1445);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background: #111011;
             color: #e0e0e0;
+            animation: none;
         }
         
         @keyframes gradientBG {
@@ -67,7 +65,7 @@
         }
         
         body.dark-theme .counter {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(30, 30, 30, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -120,15 +118,9 @@
         }
         
         body.dark-theme .btn-minus {
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Жёлтый цвет при наведении */
-        .btn-minus:hover {
-            background-color: #FFD700;
-            border-color: #FFD700;
-            color: #333;
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
         }
         
         .btn-plus {
@@ -136,8 +128,10 @@
             color: white;
         }
         
-        .btn-plus:hover {
-            background-color: #44bd32;
+        body.dark-theme .btn-plus {
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
         }
         
         .btn-reset {
@@ -151,13 +145,37 @@
         }
         
         body.dark-theme .btn-reset {
-            background-color: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #333;
+            color: white;
+            border: 1px solid #555;
+        }
+        
+        /* Стили при наведении для светлой темы */
+        .btn-minus:hover {
+            background-color: #FFD700 !important;
+            color: #333 !important;
+        }
+        
+        .btn-plus:hover {
+            background-color: #44bd32 !important;
         }
         
         .btn-reset:hover {
-            background-color: #e74c3c;
-            border-color: #e74c3c;
+            background-color: #ff6b6b !important;
+        }
+        
+        /* Стили при наведении для темной темы */
+        body.dark-theme .btn-minus:hover {
+            background-color: #555 !important;
+            color: white !important;
+        }
+        
+        body.dark-theme .btn-plus:hover {
+            background-color: #555 !important;
+        }
+        
+        body.dark-theme .btn-reset:hover {
+            background-color: #555 !important;
         }
         
         /* Блок общего количества звонков */
@@ -180,13 +198,17 @@
         }
         
         body.dark-theme .total-calls {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(30, 30, 30, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .total-value {
             font-size: 2rem;
             color: #FFD700;
+        }
+        
+        body.dark-theme .total-value {
+            color: #e0e0e0;
         }
         
         /* Стиль для таймера последнего звонка и процента эскалаций */
@@ -216,18 +238,18 @@
         
         /* Цвета для процента эскалаций */
         .escalation-low {
-            color: #4cd137; /* Зеленый */
+            color: #4cd137;
         }
         
         .escalation-medium {
-            color: #FFD700; /* Желтый */
+            color: #FFD700;
         }
         
         .escalation-high {
-            color: #ff6b6b; /* Красный */
+            color: #ff6b6b;
         }
         
-        /* Блок заработка - ИЗМЕНЕНИЕ: элементы в одну строку */
+        /* Блок заработка */
         .earnings {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 12px;
@@ -238,33 +260,37 @@
             backdrop-filter: blur(8px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             display: flex;
-            flex-direction: row; /* Изменено на row */
-            align-items: center; /* Выравнивание по центру */
-            justify-content: center; /* Центрирование по горизонтали */
-            gap: 10px; /* Расстояние между элементами */
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
         }
         
         body.dark-theme .earnings {
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(30, 30, 30, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .earnings-value {
             font-size: 1.8rem;
-            color: #FFD700;
             font-weight: bold;
+            color: #FFD700;
+        }
+        
+        body.dark-theme .earnings-value {
+            color: #e0e0e0;
         }
         
         .earnings-details {
-            display: none; /* Скрываем детализацию */
+            display: none;
         }
         
         /* Кнопка удвоения заработка */
         .double-earnings {
             position: fixed;
-            right: 15px; /* Уменьшено расстояние справа */
+            right: 15px;
             bottom: 160px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
@@ -284,25 +310,32 @@
         }
         
         body.dark-theme .double-earnings {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #333;
+            color: white;
+            border: 1px solid #555;
         }
         
         .double-earnings:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+        }
+        
+        body.dark-theme .double-earnings:hover {
+            background: #555 !important;
         }
         
         .double-earnings:active {
-            transform: translateY(0) scale(0.95);
+            transform: scale(0.95);
         }
         
         /* Анимация для кнопки X2 */
         .double-earnings.active {
             color: #FFD700;
-            background: rgba(255, 215, 0, 0.2);
             border-color: #FFD700;
             animation: pulse 1.5s infinite;
+        }
+        
+        body.dark-theme .double-earnings.active {
+            animation: darkPulse 1.5s infinite;
         }
         
         @keyframes pulse {
@@ -311,10 +344,16 @@
             100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
         }
         
+        @keyframes darkPulse {
+            0% { box-shadow: 0 0 0 0 rgba(150, 150, 150, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(150, 150, 150, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(150, 150, 150, 0); }
+        }
+        
         /* Кнопка переключения валюты */
         .currency-switcher {
             position: fixed;
-            right: 15px; /* Уменьшено расстояние справа */
+            right: 15px;
             bottom: 90px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
@@ -333,20 +372,23 @@
         }
         
         body.dark-theme .currency-switcher {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #333;
+            color: white;
+            border: 1px solid #555;
         }
         
         .currency-switcher:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+        }
+        
+        body.dark-theme .currency-switcher:hover {
+            background: #555 !important;
         }
         
         .currency-switcher:active {
-            transform: translateY(0) scale(0.95);
+            transform: scale(0.95);
         }
         
-        /* Новая анимация для кнопки валюты - плавное изменение */
         .currency-switcher.soft-pulse {
             animation: softPulse 0.6s ease;
         }
@@ -366,39 +408,25 @@
             }
         }
         
-        /* Эффект для букв при переключении */
         .currency-switcher .letter {
             display: inline-block;
             transition: all 0.3s ease;
         }
         
         .currency-switcher.changing .letter {
-            animation: letterChange 0.6s ease;
+            animation: letterFade 0.6s ease;
         }
         
-        @keyframes letterChange {
-            0% { 
-                transform: translateY(0) rotateX(0);
-                opacity: 1;
-            }
-            50% { 
-                transform: translateY(-15px) rotateX(90deg);
-                opacity: 0;
-            }
-            51% { 
-                transform: translateY(15px) rotateX(-90deg);
-                opacity: 0;
-            }
-            100% { 
-                transform: translateY(0) rotateX(0);
-                opacity: 1;
-            }
+        @keyframes letterFade {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
         
-        /* Кнопка Telegram - УМЕНЬШЕНО РАССТОЯНИЕ СЛЕВА */
+        /* Кнопка Telegram */
         .tg-button {
             position: fixed;
-            left: 15px; /* Уменьшено расстояние слева */
+            left: 15px;
             bottom: 20px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
@@ -415,8 +443,8 @@
         }
         
         body.dark-theme .tg-button {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #333;
+            border: 1px solid #555;
         }
         
         .tg-button svg {
@@ -428,8 +456,11 @@
         
         .tg-button:hover {
             opacity: 1;
-            transform: translateY(-3px);
             background: rgba(255, 255, 255, 0.3);
+        }
+        
+        body.dark-theme .tg-button:hover {
+            background: #555 !important;
         }
         
         /* Кнопка переключения темы */
@@ -452,8 +483,8 @@
         }
         
         body.dark-theme .theme-switcher {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #333;
+            border: 1px solid #555;
         }
         
         .theme-switcher svg {
@@ -462,14 +493,12 @@
             transition: all 0.3s ease;
         }
         
-        /* Солнце (видимо в светлой теме) */
         .sun-icon {
             fill: white;
             opacity: 1;
             transition: all 0.5s ease;
         }
         
-        /* Луна (видима в темной теме) */
         .moon-icon {
             fill: #FFD700;
             opacity: 0;
@@ -486,9 +515,20 @@
             transform: rotate(0deg);
         }
         
-        /* Анимация для кнопки темы */
         .theme-switcher.animate {
             animation: spin 0.8s ease;
+        }
+        
+        .theme-switcher:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        body.dark-theme .theme-switcher:hover {
+            background: #555 !important;
+        }
+        
+        .theme-switcher:active {
+            transform: scale(0.95);
         }
         
         @keyframes spin {
@@ -496,16 +536,7 @@
             100% { transform: rotate(360deg); }
         }
         
-        .theme-switcher:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-        
-        .theme-switcher:active {
-            transform: translateY(0) scale(0.95);
-        }
-        
-        /* Версия приложения - ПЕРЕМЕЩЕНА ВЛЕВО */
+        /* Версия приложения */
         .version {
             position: fixed;
             top: 15px;
@@ -513,21 +544,52 @@
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.3);
             z-index: 1000;
-            transition: all 0.5s ease;
+            animation: versionGlow 2s infinite alternate;
         }
         
         body.dark-theme .version {
             color: rgba(255, 255, 255, 0.3);
+            animation: versionGlow 2s infinite alternate;
         }
         
-        /* Анимация версии при загрузке */
-        .version.animate {
-            animation: fadeIn 1.5s ease;
+        @keyframes versionGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
         }
         
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-10px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* Стили для пасхальных яиц */
+        .easter-egg {
+            position: fixed;
+            top: -100px;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2000;
+            transition: top 0.5s ease-out;
+            box-shadow: none;
+        }
+        
+        .easter-egg.show {
+            top: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        #easterEgg1 {
+            background: rgba(50, 205, 50, 0.9);
+            color: #fff;
+        }
+        
+        #easterEgg2 {
+            background: rgba(255, 107, 107, 0.9);
+            color: #fff;
+        }
+        
+        #easterEgg3 {
+            background: rgba(255, 215, 0, 0.9);
+            color: #333;
         }
         
         @media (max-width: 500px) {
@@ -543,6 +605,11 @@
             .counter-buttons {
                 width: 100%;
                 justify-content: center;
+                gap: 4px;
+            }
+            
+            .counter-buttons > .btn-reset {
+                margin-left: 15px;
             }
             
             .total-calls {
@@ -565,7 +632,6 @@
                 height: 44px;
             }
             
-            /* Дальнейшее уменьшение расстояния на мобильных */
             .tg-button {
                 left: 10px;
                 bottom: 10px;
@@ -597,11 +663,21 @@
                 left: 10px;
                 font-size: 0.7rem;
             }
+            
+            .easter-egg {
+                font-size: 1rem;
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="version animate">v. 1.2</div>
+    <div class="version">v. 1.3.3</div>
+    
+    <!-- Пасхальные яйца -->
+    <div class="easter-egg" id="easterEgg1">100 закрыл на себе? Красава... точнее решала))</div>
+    <div class="easter-egg" id="easterEgg2">20 запросов... это было смело.. очень смело</div>
+    <div class="easter-egg" id="easterEgg3">10 эскалов.. ну тоже ведь деньги</div>
     
     <div class="container">
         <h1>Статистика саппорта</h1>
@@ -704,8 +780,10 @@
         // Инициализация счетчиков
         const counters = [0, 0, 0];
         let lastCallTime = Date.now();
-        let currencyMode = "RB"; // По умолчанию РБ
-        let isDoubleActive = false; // Флаг для удвоения заработка
+        let currencyMode = "RB";
+        let isDoubleActive = false;
+        let easterEggQueue = [];
+        let isEasterEggShowing = false;
         
         // Ставки для разных режимов
         const rates = {
@@ -891,6 +969,19 @@
                 updateLastCallTime();
             }
             
+            // Пасхалки
+            if (counterNumber === 1 && counters[0] === 100) {
+                addEasterEggToQueue(1);
+            }
+            
+            if (counterNumber === 2 && counters[1] === 10) {
+                addEasterEggToQueue(3);
+            }
+            
+            if (counterNumber === 3 && counters[2] === 20) {
+                addEasterEggToQueue(2);
+            }
+            
             updateCalculations();
             saveToLocalStorage();
         }
@@ -968,17 +1059,49 @@
             
             // Применяем класс в зависимости от значения
             if (percent <= 10) {
-                escalationElement.classList.add('escalation-low'); // Зеленый
+                escalationElement.classList.add('escalation-low');
             } else if (percent <= 15) {
-                escalationElement.classList.add('escalation-medium'); // Желтый
+                escalationElement.classList.add('escalation-medium');
             } else {
-                escalationElement.classList.add('escalation-high'); // Красный
+                escalationElement.classList.add('escalation-high');
             }
         }
         
         // Сохранение в localStorage
         function saveToLocalStorage() {
             localStorage.setItem("supportCounters", JSON.stringify(counters));
+        }
+        
+        // Добавить пасхалку в очередь
+        function addEasterEggToQueue(type) {
+            easterEggQueue.push(type);
+            
+            if (!isEasterEggShowing) {
+                showNextEasterEgg();
+            }
+        }
+        
+        // Показать следующую пасхалку из очереди
+        function showNextEasterEgg() {
+            if (easterEggQueue.length === 0) {
+                isEasterEggShowing = false;
+                return;
+            }
+            
+            isEasterEggShowing = true;
+            const type = easterEggQueue.shift();
+            const easterEgg = document.getElementById(`easterEgg${type}`);
+            
+            // Показываем пасхалку
+            easterEgg.classList.add("show");
+            
+            // Автоматически скрыть через 3.5 секунды
+            setTimeout(() => {
+                easterEgg.classList.remove("show");
+                
+                // Показать следующую пасхалку через небольшую задержку
+                setTimeout(showNextEasterEgg, 300);
+            }, 3500);
         }
     </script>
 </body>
