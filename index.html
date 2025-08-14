@@ -82,15 +82,29 @@
         }
         
         .counter-value {
+            position: relative;
             font-size: 2.5rem;
             font-weight: bold;
-            min-width: 80px;
+            min-width: 100px;
+            height: 1em;
             text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        body.dark-theme .counter-value input {
+            border-color: rgba(255, 255, 255, 0.2);
         }
         
         .counter-buttons {
             display: flex;
             gap: 8px;
+            flex-shrink: 0;
         }
         
         button {
@@ -105,6 +119,8 @@
             justify-content: center;
             transition: all 0.2s ease;
             box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            /* Убираем outline при фокусе */
+            outline: none !important;
         }
         
         button:active {
@@ -176,6 +192,12 @@
         
         body.dark-theme .btn-reset:hover {
             background-color: #555 !important;
+        }
+        
+        /* Убираем outline при фокусе у всех элементов */
+        button:focus, input:focus {
+            outline: none !important;
+            box-shadow: none !important;
         }
         
         /* Блок общего количества звонков */
@@ -545,11 +567,30 @@
             color: rgba(255, 255, 255, 0.3);
             z-index: 1000;
             animation: versionGlow 2s infinite alternate;
+            cursor: default;
+            user-select: none;
         }
         
         body.dark-theme .version {
             color: rgba(255, 255, 255, 0.3);
             animation: versionGlow 2s infinite alternate;
+        }
+        
+        /* Автор */
+        .author {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            z-index: 1000;
+            animation: versionGlow 2s infinite alternate;
+            cursor: default;
+            user-select: none;
+        }
+        
+        body.dark-theme .author {
+            color: rgba(255, 255, 255, 0.3);
         }
         
         @keyframes versionGlow {
@@ -590,6 +631,72 @@
         #easterEgg3 {
             background: rgba(255, 215, 0, 0.9);
             color: #333;
+        }
+        
+        /* Стили для ручного ввода */
+        .counter-value .display-value,
+        .counter-value .edit-value {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+        
+        .counter-value .edit-value {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: inherit;
+            font-family: inherit;
+            -moz-appearance: textfield;
+            cursor: text;
+            text-align: center;
+            padding: 0;
+        }
+        
+        .counter-value .edit-value:focus {
+            border: none;
+            outline: none;
+        }
+        
+        .counter-value .edit-value::-webkit-outer-spin-button,
+        .counter-value .edit-value::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .counter-value.editing .display-value {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+        
+        .counter-value.editing .edit-value {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        
+        /* Анимация подсветки */
+        @keyframes highlight {
+            0% { color: inherit; }
+            50% { color: #FFD700; }
+            100% { color: inherit; }
+        }
+        
+        .counter-value .display-value.changed {
+            animation: highlight 0.5s ease;
         }
         
         @media (max-width: 500px) {
@@ -658,10 +765,17 @@
                 height: 22px;
             }
             
-            .version {
+            .version, .author {
                 top: 10px;
-                left: 10px;
                 font-size: 0.7rem;
+            }
+            
+            .version {
+                left: 10px;
+            }
+            
+            .author {
+                right: 10px;
             }
             
             .easter-egg {
@@ -672,7 +786,8 @@
     </style>
 </head>
 <body>
-    <div class="version">v. 1.3.3</div>
+    <div class="version">v. 1.4</div>
+    <div class="author">by lyoka</div>
     
     <!-- Пасхальные яйца -->
     <div class="easter-egg" id="easterEgg1">100 закрыл на себе? Красава... точнее решала))</div>
@@ -686,7 +801,10 @@
         <div class="counter">
             <div class="counter-title">Решил сам</div>
             <div class="counter-content">
-                <div class="counter-value" id="counter1">0</div>
+                <div class="counter-value" id="counter1">
+                    <span class="display-value">0</span>
+                    <input type="text" class="edit-value" maxlength="4">
+                </div>
                 <div class="counter-buttons">
                     <button class="btn-minus" onclick="changeCounter(1, -1)">-</button>
                     <button class="btn-plus" onclick="changeCounter(1, 1)">+</button>
@@ -699,7 +817,10 @@
         <div class="counter">
             <div class="counter-title">Эскал</div>
             <div class="counter-content">
-                <div class="counter-value" id="counter2">0</div>
+                <div class="counter-value" id="counter2">
+                    <span class="display-value">0</span>
+                    <input type="text" class="edit-value" maxlength="4">
+                </div>
                 <div class="counter-buttons">
                     <button class="btn-minus" onclick="changeCounter(2, -1)">-</button>
                     <button class="btn-plus" onclick="changeCounter(2, 1)">+</button>
@@ -712,7 +833,10 @@
         <div class="counter">
             <div class="counter-title">Запросил RR</div>
             <div class="counter-content">
-                <div class="counter-value" id="counter3">0</div>
+                <div class="counter-value" id="counter3">
+                    <span class="display-value">0</span>
+                    <input type="text" class="edit-value" maxlength="4">
+                </div>
                 <div class="counter-buttons">
                     <button class="btn-minus" onclick="changeCounter(3, -1)">-</button>
                     <button class="btn-plus" onclick="changeCounter(3, 1)">+</button>
@@ -806,7 +930,8 @@
                 const parsed = JSON.parse(savedCounters);
                 for (let i = 0; i < 3; i++) {
                     counters[i] = parsed[i];
-                    document.getElementById(`counter${i+1}`).textContent = parsed[i];
+                    const counterElement = document.getElementById(`counter${i+1}`);
+                    counterElement.querySelector('.display-value').textContent = parsed[i];
                 }
                 updateCalculations();
             }
@@ -852,7 +977,89 @@
             
             // Инициализация заработка
             updateEarnings();
+            
+            // Инициализация ручного ввода для счетчиков
+            initManualInput();
         });
+        
+        // Инициализация ручного ввода
+        function initManualInput() {
+            const counterElements = document.querySelectorAll('.counter-value');
+            
+            counterElements.forEach(element => {
+                // Вешаем двойной клик на весь элемент
+                element.addEventListener('dblclick', function() {
+                    if (!this.classList.contains('editing')) {
+                        activateEditing(this);
+                    }
+                });
+                
+                const input = element.querySelector('.edit-value');
+                
+                // Завершение ввода при потере фокуса
+                input.addEventListener('blur', function() {
+                    finishManualInput(element);
+                });
+                
+                // Завершение ввода по нажатию Enter
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        finishManualInput(element);
+                    }
+                });
+                
+                // Фильтрация ввода - только цифры (максимум 4)
+                input.addEventListener('input', function() {
+                    this.value = this.value.replace(/\D/g, '').slice(0, 4);
+                });
+            });
+        }
+        
+        function activateEditing(element) {
+            element.classList.add("editing");
+            const input = element.querySelector('.edit-value');
+            const span = element.querySelector('.display-value');
+            input.value = span.textContent;
+            input.focus();
+            input.select();
+        }
+        
+        function finishManualInput(element) {
+            element.classList.remove("editing");
+            const input = element.querySelector('.edit-value');
+            const span = element.querySelector('.display-value');
+            let newValue = parseInt(input.value) || 0;
+            if (newValue < 0) newValue = 0;
+            
+            // Если значение изменилось
+            if (parseInt(span.textContent) !== newValue) {
+                span.textContent = newValue;
+                
+                // Обновление счетчика
+                const counterId = element.id.replace('counter', '');
+                const index = parseInt(counterId) - 1;
+                counters[index] = newValue;
+                
+                // Обновление времени для счетчиков звонков
+                if (counterId === '1' || counterId === '2') {
+                    updateLastCallTime();
+                }
+                
+                updateCalculations();
+                saveToLocalStorage();
+                
+                // Подсветка
+                highlightValue(span);
+            }
+        }
+        
+        // Подсветка значения при изменении
+        function highlightValue(element) {
+            element.classList.add("changed");
+            element.addEventListener('animationend', () => {
+                element.classList.remove("changed");
+            }, {once: true});
+        }
         
         // Переключение темы
         function toggleTheme() {
@@ -962,8 +1169,11 @@
             counters[index] += change;
             if (counters[index] < 0) counters[index] = 0;
             
-            document.getElementById(`counter${counterNumber}`).textContent = counters[index];
+            const counterElement = document.getElementById(`counter${counterNumber}`);
+            const span = counterElement.querySelector('.display-value');
+            span.textContent = counters[index];
             
+            // УБРАЛИ ПОДСВЕТКУ ПРИ ИЗМЕНЕНИИ КНОПКАМИ
             // Обновляем время последнего звонка для счетчиков 1 и 2
             if (counterNumber === 1 || counterNumber === 2) {
                 updateLastCallTime();
@@ -990,7 +1200,13 @@
         function resetCounter(counterNumber) {
             const index = counterNumber - 1;
             counters[index] = 0;
-            document.getElementById(`counter${counterNumber}`).textContent = 0;
+            
+            const counterElement = document.getElementById(`counter${counterNumber}`);
+            const span = counterElement.querySelector('.display-value');
+            span.textContent = 0;
+            
+            // ПОДСВЕТКА ПРИ СБРОСЕ
+            highlightValue(span);
             
             // Обновляем время последнего звонка для счетчиков 1 и 2
             if (counterNumber === 1 || counterNumber === 2) {
